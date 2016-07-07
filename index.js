@@ -1,7 +1,8 @@
 const ConsoleBase = require('console').Console;
 const util = require('util');
 const Class = require('cify').Class;
-const color = require('./color');
+const colors = require('colors');
+require('console.table');
 
 const OVERRIDE_METHOD_INFOS = [
   {
@@ -20,7 +21,7 @@ const OVERRIDE_METHOD_INFOS = [
 
 const Console = new Class({
   _extends: ConsoleBase,
-  color: color,
+  colors: colors,
   constructor: function (stdout, stderr) {
     this.stdout = stdout;
     this.stderr = stderr;
@@ -33,18 +34,19 @@ const Console = new Class({
       var method = self[methodInfo.name];
       self[methodInfo.name] = (function () {
         var text = util.format.apply(util, arguments);
-        var colorRender = self.color[methodInfo.color];
+        var colorRender = self.colors[methodInfo.color];
         return method.call(self, colorRender ? colorRender(text) : text);
       }).bind(self);
     });
   },
   _initColorMethods: function () {
     var self = this;
-    for (var name in self.color) {
+    Object.getOwnPropertyNames(self.colors).forEach(function (name) {
       self[name] = function (text) {
-        self.write(self.color[name](text));
+        text = String(text);
+        self.write(self.colors[name](text));
       };
-    }
+    });
   },
   write: function () {
     this.stdout.write.apply(this.stdout, arguments);
@@ -53,11 +55,9 @@ const Console = new Class({
     this.write('\u001B[2J\u001B[0;0f');
   },
   table: function () {
-
+    console.table.apply(this, arguments);
   }
 });
 
-const console = new Console(process.stdout, process.stderr);
-console.Console = Console;
-
-module.exports = console;
+module.exports = new Console(process.stdout, process.stderr);
+module.exports.Console = Console;
