@@ -1,4 +1,4 @@
-var console = require('./');
+var console = require('../');
 
 console.error('test');
 

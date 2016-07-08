@@ -1,8 +1,8 @@
 {
   "name": "console3",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a fancy console",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "mohca"
   },
