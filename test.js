@@ -1,5 +1,5 @@
 var console = require('./');
 
-console.info('houfeng');
+console.error('test');
 
-console.table([{ name: 'hou', age: 100 }]);
+console.table([{ name: 'test', age: 100 }]);

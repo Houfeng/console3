@@ -1,7 +1,7 @@
 const ConsoleBase = require('console').Console;
 const util = require('util');
 const Class = require('cify').Class;
-const colors = require('colors');
+const colors = require('colors/safe');
 require('console.table');
 
 const OVERRIDE_METHOD_INFOS = [
