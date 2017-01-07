@@ -1,6 +1,6 @@
 {
   "name": "console3",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a fancy console",
   "main": "./lib/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Houfeng/console3#readme",
   "dependencies": {
-    "cify": "^1.0.0",
+    "cify": "^2.1.1",
     "console.table": "^0.7.0"
   }
 }
